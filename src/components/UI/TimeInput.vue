@@ -1,14 +1,9 @@
 <template>
-  <div>
-    <input type="text" v-mask="'##:##-##:##'" placeholder="13:00-15:00" />
-  </div>
+  <div></div>
 </template>
 
 <script>
-import { createApp } from "vue";
-import VueMask from "v-mask";
-
-const app = createApp({});
-app.use(VueMask);
-app.mount("#app");
+export default {};
 </script>
+
+<style scoped></style>
