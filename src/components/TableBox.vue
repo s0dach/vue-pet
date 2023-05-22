@@ -31,7 +31,9 @@
         <span v-show="!checked" class="table-name">Заголовок</span>
         <span v-show="!checked" class="table-name">Почта</span>
         <span v-show="!checked" class="table-name">Роль</span>
-        <span v-show="!checked" class="table-name">Дата создания</span>
+        <span v-show="!checked" class="table-name" @click="sortTable()"
+          >Дата создания</span
+        >
         <span v-show="!checked" class="table-name">Действие</span>
       </div>
       <div class="table-name-block" v-for="user in users">
@@ -45,7 +47,9 @@
         <span class="table-name-down">{{ user.title }}</span>
         <span class="table-name-down">{{ user.email }}</span>
         <span class="table-name-down">{{ user.role }}</span>
-        <span class="table-name-down-date">{{ user.date }}</span>
+        <span class="table-name-down-date">{{
+          new Date(user.date).toLocaleString()
+        }}</span>
         <span
           class="table-name-edit"
           @click="modalVisibleFunc(false, true, user)"
@@ -61,6 +65,7 @@ export default {
   data() {
     return {
       checked: false,
+      sortBoolean: false,
     };
   },
   props: {
@@ -87,6 +92,28 @@ export default {
     deleteAllUsers() {
       this.$emit("deleteAll");
       this.checked = false;
+    },
+    sortTable() {
+      const users = this.users;
+      this.$emit("sortTable", users);
+      if (this.sortBoolean) {
+        users.sort((a, b) => a.date - b.date);
+        this.sortBoolean = !this.sortBoolean;
+        console.log(this.sortBoolean);
+      } else {
+        function compareValuesDesc(a, b) {
+          if (a.date > b.date) {
+            return -1;
+          }
+          if (a.date < b.date) {
+            return 1;
+          }
+          return 0;
+        }
+
+        users.sort(compareValuesDesc);
+        this.sortBoolean = !this.sortBoolean;
+      }
     },
   },
 };

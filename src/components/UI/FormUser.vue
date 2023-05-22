@@ -102,16 +102,13 @@ export default {
   },
   methods: {
     createUser() {
-      // Дата в нормальном виде
-      const currentDate = new Date();
-      const dateString = currentDate.toLocaleString();
       const user = {
         id: Date.now(),
         name: this.user.name,
         title: this.user.title,
         email: this.user.email,
         role: this.user.role,
-        date: dateString,
+        date: Date.now(),
         selected: false,
       };
       this.$emit("create", user);

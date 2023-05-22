@@ -30,6 +30,7 @@
       @update="modalVisibleFunc"
       @deleteAll="deleteAllUsers"
       @updateCheckboxAll="updateCheckboxAll"
+      @sortTable="sortTable"
     />
   </div>
 </template>
@@ -73,7 +74,7 @@ export default {
           title: "Тестовый заголовок",
           email: "idone@mail.ru",
           role: "Администратор",
-          date: "",
+          date: 1684740160239,
           selected: false,
         },
         {
@@ -82,7 +83,7 @@ export default {
           title: "Тестовый заголовок",
           email: "idone@mail.ru",
           role: "Тестировщик",
-          date: "",
+          date: 1684740360239,
           selected: false,
         },
         {
@@ -91,7 +92,7 @@ export default {
           title: "Тестовый заголовок",
           email: "idone@mail.ru",
           role: "Дизайнер",
-          date: "",
+          date: 1684740760239,
           selected: false,
         },
         {
@@ -100,7 +101,7 @@ export default {
           title: "Тестовый заголовок",
           email: "idone@mail.ru",
           role: "Менеджер",
-          date: "",
+          date: 1684740360239,
           selected: false,
         },
       ],
@@ -126,7 +127,6 @@ export default {
       this.modalVisible = show;
     },
     deleteAllUsers(one) {
-      console.log(one);
       this.users = [];
     },
     updateCheckboxAll(props) {
@@ -139,6 +139,9 @@ export default {
           user.selected = false;
         });
       }
+    },
+    sortTable(props) {
+      this.users = props;
     },
   },
 };
